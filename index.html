@@ -85,13 +85,13 @@
         }
         
         .photo-2 img { 
-            height: clamp(260px, 55vw, 400px);
+            height: clamp(260px, 60vw, 380px);
             object-position: center center; 
         }
         
         .photo-3 img { 
-            height: clamp(500px, 130vw, 750px);
-            object-position: center 10%; 
+            height: clamp(500px, 130vw, 700px);
+            object-position: center 15%; 
         }
 
         /* Hero */
@@ -99,8 +99,11 @@
             padding: var(--pad-v) var(--pad-h);
         }
         
-        .hero-name {
-            font-size: clamp(56px, 15vw, 120px);
+        .hero-script {
+            font-family: 'Playfair Display', 'Georgia', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(72px, 20vw, 120px);
             line-height: 1.1;
             opacity: 0;
             animation: fadeUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
@@ -120,10 +123,17 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Invite Text */
-        .invite-section {
-            padding: var(--pad-v) 24px;
+        /* Global Padding for Content Sections */
+        .invite-section,
+        .date-section,
+        .countdown-section,
+        .venue-section,
+        .host-section,
+        .rsvp-section {
+            padding: clamp(56px, 12vw, 80px) clamp(16px, 5vw, 32px);
         }
+
+        /* Invite Text */
 
         .invite-kurmetti {
             font-size: clamp(32px, 8vw, 48px);
@@ -143,34 +153,32 @@
         }
 
         /* Date Section */
-        .date-section {
-            padding: var(--pad-v) var(--pad-h);
-        }
 
         .month-title {
-            font-size: clamp(14px, 4vw, 20px);
-            letter-spacing: 14px;
+            font-size: clamp(16px, 5vw, 28px);
+            letter-spacing: clamp(6px, 3vw, 14px);
             margin-bottom: 30px;
         }
 
         .date-row {
             display: flex;
-            justify-content: center;
             align-items: center;
-            gap: clamp(12px, 4vw, 32px);
+            justify-content: center;
+            gap: clamp(16px, 5vw, 40px);
             border-top: 1px solid #aaa;
             border-bottom: 1px solid #aaa;
-            padding: 20px 0;
-            max-width: 480px;
-            margin: 0 auto;
-            font-size: clamp(16px, 4vw, 20px);
+            padding: 16px 0;
+            width: 100%;
         }
 
         .date-num {
-            font-size: clamp(36px, 10vw, 56px);
-            line-height: 1;
+            font-size: clamp(36px, 9vw, 52px);
             font-weight: 300;
+            line-height: 1;
         }
+        
+        .date-day { font-size: clamp(10px, 2.8vw, 13px); letter-spacing: 3px; }
+        .date-year { font-size: clamp(13px, 3.5vw, 18px); }
 
         .time-text {
             font-size: clamp(14px, 4vw, 20px);
@@ -178,48 +186,7 @@
             margin: 30px 0;
         }
 
-        .mini-calendar {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: clamp(6px, 2.5vw, 24px);
-            font-size: clamp(11px, 2.8vw, 14px);
-            margin-top: 20px;
-        }
-
-        .cal-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            position: relative;
-        }
-
-        .cal-item.active {
-            position: relative;
-        }
-
-        .cal-item.active::after {
-            content: '♡';
-            position: absolute;
-            bottom: -22px;
-            font-size: 14px;
-            color: var(--text-color);
-        }
-        
-        .cal-item.active::before {
-            content: '';
-            position: absolute;
-            bottom: -6px;
-            height: 14px;
-            width: 1px;
-            background-color: var(--text-color);
-            opacity: 0.5;
-        }
-
-        .cal-day-label {
-            font-style: italic;
-        }
+        /* Calendar removed */
 
         /* Countdown */
         .countdown {
@@ -250,7 +217,11 @@
 
         /* Venue */
         .venue-section {
-            padding: var(--pad-v) var(--pad-h);
+            padding-top: clamp(56px, 12vw, 80px);
+            padding-bottom: clamp(56px, 12vw, 80px);
+            padding-left: clamp(16px, 5vw, 32px);
+            padding-right: clamp(16px, 5vw, 32px);
+            text-align: center;
         }
 
         .venue-title {
@@ -306,13 +277,11 @@
         }
 
         /* Host */
-        .host-section {
-            padding: var(--pad-v) var(--pad-h);
-        }
 
-        .host-labels {
-            font-size: clamp(14px, 4vw, 20px);
-            letter-spacing: 4px;
+        .host-label {
+            font-size: clamp(10px, 2.5vw, 13px);
+            letter-spacing: clamp(3px, 2vw, 6px);
+            color: #999;
             margin-bottom: 15px;
         }
         
@@ -324,15 +293,13 @@
         }
 
         .host-name {
-            font-size: clamp(24px, 7vw, 40px);
-            letter-spacing: 12px;
+            font-size: clamp(18px, 5vw, 32px);
+            letter-spacing: clamp(6px, 3vw, 12px);
+            color: #1a1a1a;
             margin: 15px 0;
         }
 
         /* RSVP */
-        .rsvp-section {
-            padding: var(--pad-v) var(--pad-h);
-        }
 
         .rsvp-title {
             font-size: clamp(40px, 10vw, 60px);
@@ -479,7 +446,7 @@
 
     <!-- Hero -->
     <header class="hero section-divider">
-        <h1 class="calligraphic hero-name">Danel</h1>
+        <h1 class="hero-script">Danel</h1>
         <div class="uppercase hero-subtitle">QYZ UZATU</div>
     </header>
 
@@ -509,22 +476,14 @@
     <section class="date-section reveal section-divider">
         <div class="uppercase month-title">М А У С Ы М</div>
         <div class="date-row uppercase">
-            <div>ЖЕКСЕНБІ</div>
+            <div class="date-day">ЖЕКСЕНБІ</div>
             <div class="date-num">21</div>
-            <div>2026</div>
+            <div class="date-year">2026</div>
         </div>
         
         <div class="time-text uppercase">1 7 : 0 0</div>
 
-        <div class="mini-calendar">
-            <div class="cal-item"><span class="cal-day-label">Дс</span> 15</div>
-            <div class="cal-item"><span class="cal-day-label">Сс</span> 16</div>
-            <div class="cal-item"><span class="cal-day-label">Ср</span> 17</div>
-            <div class="cal-item"><span class="cal-day-label">Бс</span> 18</div>
-            <div class="cal-item"><span class="cal-day-label">Жм</span> 19</div>
-            <div class="cal-item"><span class="cal-day-label">Сн</span> 20</div>
-            <div class="cal-item active"><span class="cal-day-label">Жб</span> 21</div>
-        </div>
+        <!-- Calendar removed -->
 
         <div class="countdown">
             <div class="cd-box">
@@ -557,7 +516,7 @@
 
     <!-- Host -->
     <section class="host-section reveal section-divider">
-        <div class="host-labels uppercase muted">ҚҰРМЕТТІ ТОЙ ИЕСІ</div>
+        <div class="host-label uppercase muted">ҚҰРМЕТТІ ТОЙ ИЕСІ</div>
         <div class="host-ornament">— ✦ —</div>
         <div class="host-name uppercase">Ж А Ң Ы Л</div>
         <div class="host-ornament">— ✦ —</div>

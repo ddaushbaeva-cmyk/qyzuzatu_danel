@@ -465,7 +465,15 @@
             letter-spacing: normal;
         }
 
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
     </style>
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
 </head>
 <body>
 
@@ -568,7 +576,7 @@
             
             <form id="rsvp-form" class="form-container">
                 <div class="form-group">
-                    <input type="text" id="guest-name" class="form-input" placeholder="Есімініз" required>
+                    <input type="text" id="guest-name" name="guest_name" class="form-input" placeholder="Есімініз" required>
                 </div>
 
                 <div class="form-group">
@@ -599,6 +607,7 @@
                         <div class="counter-val" id="guest-count">1</div>
                         <button type="button" class="counter-btn" id="btn-plus">+</button>
                     </div>
+                    <input type="hidden" name="guest_count" id="guest-count-hidden" value="1">
                 </div>
 
                 <button type="submit" class="btn btn-full">Ж І Б Е Р У</button>
@@ -619,6 +628,9 @@
     <!-- Scripts -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            
+            // Initialize EmailJS
+            emailjs.init({ publicKey: "ktx64JFiF-R0_2H-g" });
             
             // 1. Scroll Animations (IntersectionObserver)
             const revealElements = document.querySelectorAll('.reveal');
@@ -680,28 +692,44 @@
                 if (guestsNum > 1) {
                     guestsNum--;
                     guestCountEl.textContent = guestsNum;
+                    document.getElementById('guest-count-hidden').value = guestsNum;
                 }
             });
 
             btnPlus.addEventListener('click', () => {
                 guestsNum++;
                 guestCountEl.textContent = guestsNum;
+                document.getElementById('guest-count-hidden').value = guestsNum;
             });
 
-            // 4. Form Submit
+            // 4. Form Submit with EmailJS
             const rsvpForm = document.getElementById('rsvp-form');
             const rsvpWrapper = document.getElementById('rsvp-wrapper');
             const successMsg = document.getElementById('success-msg');
+            const submitBtn = rsvpForm.querySelector('button[type="submit"]');
 
-            rsvpForm.addEventListener('submit', (e) => {
+            rsvpForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 
-                // Form validation is handled by HTML5 'required' 
-                // on the name input and radio button group.
+                const originalBtnText = submitBtn.textContent;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Жіберілуде...';
                 
-                // Hide wrapper and show success message
-                rsvpWrapper.style.display = 'none';
-                successMsg.style.display = 'block';
+                try {
+                    await emailjs.sendForm(
+                        'service_gt4dqeh',
+                        'template_btsik9f',
+                        rsvpForm
+                    );
+                    
+                    rsvpWrapper.style.display = 'none';
+                    successMsg.style.display = 'block';
+                } catch (error) {
+                    console.error('EmailJS error:', error);
+                    alert('Қате орын алды. Қайталап көріңіз.');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnText;
+                }
             });
             
         });

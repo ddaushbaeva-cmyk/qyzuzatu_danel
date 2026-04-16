@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Данель - Қыз Ұзату</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Playfair+Display:ital@1&display=swap');
-
         :root {
             --bg-color: #f5f0e8;
             --text-color: #1a1a1a;
-            --border-color: #ccc;
-            --font-callig: 'Playfair Display', serif;
+            --border-color: #2a2a2a;
+            --font-callig: 'Pinyon Script', 'Allura', 'Great Vibes', cursive;
             --font-body: 'Cormorant Garamond', serif;
             
             --pad-v: clamp(40px, 8vw, 64px);
@@ -38,7 +39,7 @@
 
         /* Utilities */
         .calligraphic {
-            font-family: var(--font-callig);
+            font-family: 'Cormorant Garamond', serif;
             font-style: italic;
             font-weight: 400;
         }
@@ -100,8 +101,8 @@
         }
         
         .hero-script {
-            font-family: 'Playfair Display', 'Georgia', serif;
-            font-style: italic;
+            font-family: 'Pinyon Script', 'Allura', 'Great Vibes', cursive;
+            font-style: normal;
             font-weight: 400;
             font-size: clamp(72px, 20vw, 120px);
             line-height: 1.1;
@@ -133,23 +134,38 @@
             padding: clamp(56px, 12vw, 80px) clamp(16px, 5vw, 32px);
         }
 
-        /* Invite Text */
+        /* Invite Text — Restructured into distinct blocks */
 
         .invite-kurmetti {
             font-size: clamp(32px, 8vw, 48px);
-            margin-bottom: 24px;
+            margin-bottom: clamp(20px, 5vw, 32px);
         }
 
-        .invite-body {
+        .invite-guests {
             font-size: clamp(18px, 4.5vw, 22px);
             max-width: 600px;
             margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .invite-address {
+            font-size: clamp(18px, 4.5vw, 22px);
+            max-width: 600px;
+            margin: clamp(20px, 5vw, 32px) auto;
+            line-height: 1.6;
         }
 
         .invite-name {
             font-size: clamp(36px, 9vw, 60px);
-            margin: 20px 0;
+            margin: clamp(8px, 2vw, 16px) 0;
             display: block;
+        }
+
+        .invite-closing {
+            font-size: clamp(18px, 4.5vw, 22px);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
         }
 
         /* Date Section */
@@ -161,32 +177,49 @@
         }
 
         .date-row {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
             align-items: center;
-            justify-content: center;
-            gap: clamp(16px, 5vw, 40px);
-            border-top: 1px solid #aaa;
-            border-bottom: 1px solid #aaa;
-            padding: 16px 0;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 20px 24px;
             width: 100%;
+        }
+
+        .date-day,
+        .date-year {
+            align-self: center;
+            line-height: 1;
+            margin: 0;
+            padding: 0;
         }
 
         .date-num {
             font-size: clamp(36px, 9vw, 52px);
             font-weight: 300;
             line-height: 1;
+            text-align: center;
+            align-self: center;
+            margin: 0;
+            padding: 0;
         }
         
-        .date-day { font-size: clamp(10px, 2.8vw, 13px); letter-spacing: 3px; }
-        .date-year { font-size: clamp(13px, 3.5vw, 18px); }
+        .date-day { 
+            font-size: clamp(11px, 2.8vw, 14px); 
+            letter-spacing: 3px; 
+            text-align: left;
+        }
+        .date-year { 
+            font-size: clamp(11px, 2.8vw, 14px);
+            letter-spacing: 2px;
+            text-align: right;
+        }
 
         .time-text {
             font-size: clamp(14px, 4vw, 20px);
             letter-spacing: 8px;
             margin: 30px 0;
         }
-
-        /* Calendar removed */
 
         /* Countdown */
         .countdown {
@@ -284,19 +317,11 @@
             color: #999;
             margin-bottom: 15px;
         }
-        
-        .host-ornament {
-            font-size: 18px;
-            letter-spacing: 4px;
-            margin: 15px 0;
-            opacity: 0.6;
-        }
 
         .host-name {
             font-size: clamp(18px, 5vw, 32px);
             letter-spacing: clamp(6px, 3vw, 12px);
             color: #1a1a1a;
-            margin: 15px 0;
         }
 
         /* RSVP */
@@ -451,25 +476,35 @@
     </header>
 
     <!-- Photo 1: Veil -->
-    <div class="photo-block photo-1 reveal section-divider">
+    <div class="photo-block photo-1 reveal">
         <img src="photo1.jpg" alt="Danel Qyz Uzatu">
     </div>
 
     <!-- Invitation Text -->
     <section class="invite-section reveal section-divider">
         <div class="calligraphic invite-kurmetti">Құрметті</div>
-        <div class="invite-body">
-            Ағайын-туыс, бауырлар, құда-жекжат, нағашы-жиен, бөлелер, дос-жаран, көршілер мен әріптестер!
-            <br><br>
-            Сіз(дер)ді аяулы қызымыз
-            <span class="calligraphic invite-name">Данельдін</span>
-            Ұзату тойына арналған салтанатты ақ дастарханымыздың қадірлі қонағы болуға шақырамыз!
+
+        <div class="invite-guests">
+            Ағайын-туыс, бауырлар, құда-жекжат, нағашы-жиен,<br>
+            бөлелер, дос-жаран, көршілер мен әріптестер!
+        </div>
+
+        <div class="invite-address">
+            Сіз(дер)ді<br>
+            аяулы қызымыз
+        </div>
+
+        <span class="calligraphic invite-name">Данельдің</span>
+
+        <div class="invite-closing">
+            Ұзату тойына арналған салтанатты ақ дастарханымыздың<br>
+            қадірлі қонағы болуға шақырамыз!
         </div>
     </section>
 
     <!-- Photo 2: Hands -->
-    <div class="photo-block photo-2 reveal section-divider">
-        <img src="photo3.jpg" alt="Қосылған қолдар" loading="lazy">
+    <div class="photo-block photo-2 reveal">
+        <img src="photo2.jpg" alt="Қосылған қолдар" loading="lazy">
     </div>
 
     <!-- Date & Countdown -->
@@ -511,20 +546,18 @@
         <div class="venue-address">Бесағаш ауылы, Аэропортная 8</div>
         <div class="restaurant-name uppercase">А Қ - С А Р А Й</div>
         <div class="restaurant-sub">мейрамханасы</div>
-        <a href="https://maps.google.com/?q=Бесагаш+Аэропортная+8" target="_blank" class="btn">КАРТА</a>
+        <a href="https://2gis.kz/almaty/geo/70000001025824800/77.048165,43.305046" target="_blank" rel="noopener" class="btn">КАРТА</a>
     </section>
 
     <!-- Host -->
     <section class="host-section reveal section-divider">
         <div class="host-label uppercase muted">ҚҰРМЕТТІ ТОЙ ИЕСІ</div>
-        <div class="host-ornament">— ✦ —</div>
         <div class="host-name uppercase">Ж А Ң Ы Л</div>
-        <div class="host-ornament">— ✦ —</div>
     </section>
 
     <!-- Photo 3: Sholpy -->
-    <div class="photo-block photo-3 reveal section-divider">
-        <img src="photo2.jpg" alt="Шолпы" loading="lazy">
+    <div class="photo-block photo-3 reveal">
+        <img src="photo3.jpg" alt="Шолпы" loading="lazy">
     </div>
 
     <!-- RSVP -->
